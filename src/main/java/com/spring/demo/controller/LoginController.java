@@ -24,5 +24,15 @@ public class LoginController {
 	public String showLoginPage() {
 		return "fancy-login";
 	}
+	
+	@GetMapping("/admins")
+	public String showAdminPage() {
+		return "admins";
+	}
+	
+	@GetMapping("/managers")
+	public String showLeaderPage() {
+		return "managers";
+	}
 
 }
