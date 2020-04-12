@@ -17,9 +17,9 @@
 		
 		
 		<!-- Accessible to Admin -->
-		<br><a href="${pageContext.request.contextPath}/admins">Admin Accessible Page</a>
+		<br><br><a href="${pageContext.request.contextPath}/admins">Admin Accessible Page</a>
 		<!-- Accessible to Managers -->
-		<br><a href="${pageContext.request.contextPath}/managers">Admin Accessible Page</a>
+		<br><br><a href="${pageContext.request.contextPath}/managers">Manager Accessible Page</a>
 		
 		<!-- We do not need to cfreate any mapping as it will be hadled by Sprin -->
 		<form:form action="${pageContext.request.contextPath}/logout" method="POST">
