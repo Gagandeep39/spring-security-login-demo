@@ -23,14 +23,31 @@
 
 	<dependencies>
 
-		<!-- Always do some research that Spring security and Spring versions are compatible with each other as they are separate project -->
+
+		<!-- My sql dependency -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.19</version>
+		</dependency>
+
+
+		<!-- C3p0 for managing connection pool size -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.5</version>
+		</dependency>
+
+		<!-- Always do some research that Spring security and Spring versions are 
+			compatible with each other as they are separate project -->
 		<!-- Spring Security Web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>${springsecurity.version}</version>
 		</dependency>
-		
+
 		<!-- Spring Security Config -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -88,7 +105,8 @@
 		<!-- Final name refers to the name of the .warr file generated -->
 		<finalName>spring-login-security</finalName>
 		<pluginManagement>
-		<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+			<!-- lock down plugins versions to avoid using Maven defaults (may be 
+				moved to parent pom) -->
 			<plugins>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
