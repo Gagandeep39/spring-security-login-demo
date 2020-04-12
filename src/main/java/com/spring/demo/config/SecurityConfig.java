@@ -50,7 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.formLogin()
 		.loginPage("/showMyLoginPage")	//pth to login page to be shown
 		.loginProcessingUrl("/authenticateTheUser")	//path to submit actionn 
-		.permitAll();	//allow everone to the the page
+		.permitAll() //allow everone to the the page
+		.and()
+		.logout()	// Add logout functionality
+		.permitAll();	
 	}
 
 }
