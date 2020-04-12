@@ -19,5 +19,10 @@ public class LoginController {
 	public String showHome() {
 		return "home";
 	}
+	
+	@GetMapping("/showMyLoginPage")
+	public String showLoginPage() {
+		return "plain-login";
+	}
 
 }
