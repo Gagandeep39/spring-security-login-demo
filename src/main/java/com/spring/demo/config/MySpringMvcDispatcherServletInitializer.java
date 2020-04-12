@@ -9,6 +9,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 /**
  * Creating Servlet Dispatcher using Java config
+ * INitializes Web Appliaction
+ * Replacement to web.xml
  */
 public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
