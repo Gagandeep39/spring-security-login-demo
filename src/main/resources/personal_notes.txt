@@ -1,0 +1,77 @@
+
+***************Spring Secutity NOTES***************
+Provides a defautl login system
+User is logged in during devlopemnt when sprng secrioty and nitialized and user login once
+This is not the deafult behaviour in Production build 
+-> Ceate a spring security initialier class that extends 
+AbstractSecurityWebApplicationInitializer 
+-> Create a security config class for using various inbuilt functions by oberriding methods 
+ WebSecurityConfigurerAdapte
+ -> Also add @EnableWebSecurity
+-> Uses propertyname as username and password by default 
+JSP forms 
+<form:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
+Using context path is best practice instead of loading path'
+
+
+
+CSRF 
+-> Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated.
+-> Cross site request forgery 
+-> Enabled by default in spring security 
+-> Each request include a session cookie 
+-> Uses token verification 
+-> We should always use POST mthod 
+-> use Java tag lib <form:form> manaully adds token 
+-> if we use normal form with spring security, we wil get error CSRF is null as nthere is no default token 
+
+To add support for user roles
+Add spring-secuty tag library 
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
+TO show user credentials 
+<security:authentication property="principal.username"/>
+
+TO hide llinks based on authoriztion 
+<security:authorize access="hasRole('ADMIN')">
+		<br><br><a href="${pageContext.request.contextPath}/admins">Admin Accessible Page</a>
+</security:authorize>
+
+Spring security has its own JDBC schema for storing users
+We have tp use exact same table name
+
+TO read files from src/main/resources in maven project as they are automatically addd to classpath
+@PropertySource("classpath:persistence-mysql.properties")
+
+To generate an encyypted password 
+https://www.bcryptcalculator.com/
+
+passowrd is storedd as 
+{id}password 
+ID-> Password encoding 
+{noop} -> No encoding
+{bcrypt} -> Creates a 60 char encoding 
+So field length must be 68 (60 for password, 8 for id i.e {bcrypt})
+
+Spring filer performsthe following steps 
+1. Read passwird from database 
+2. Read encryptying algorithm 
+3. Encrypt password entered by user 
+4. Compare database encrypted and user entered + encrypted password 
+5. If match then logi nsuccessull 
+6. ELse login failed 
+
+NOTE: 
+bcrypt is 1way algorith 
+The passwords are never decrypted 
+SO Spring encryps current password and compare it with database encrypted password
+
+
+**********Additional Notes**********
+Sometimes we get error Cannot start server
+It is due to multiple project with same .war file name 
+-> rightclick on project->properties->web-project-setting-> Change the name
+Context Root 
+localhost:8080/my-app 
+HEre mu-app is the context root
+

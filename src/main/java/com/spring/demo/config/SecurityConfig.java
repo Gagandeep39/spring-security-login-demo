@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * Overriding COnfigure class and creating users
 	 * Using porebuit User entity with username, password, roles
+	 * Uses encrypted password using 'bcrypt' algorithm
+	 * Spring secrity automatically decrypts the password based on algorithm ued
 	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
