@@ -37,6 +37,12 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${springsecurity.version}</version>
 		</dependency>
+		<!-- Spring Security Tag libraries for user roles -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
 		<!-- Spring MVC support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
