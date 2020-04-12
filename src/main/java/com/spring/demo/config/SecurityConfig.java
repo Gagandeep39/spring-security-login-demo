@@ -38,12 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	/**
+	 * COngigure method allows us to modify default security settings of spring security
+	 * 
 	 * Create our own login page
 	 * Doesnt provide any error handling by default
 	 * 
 	 * permitAll -> Gives permission to all
 	 * antMatchers -> Add restriction in page access based on roles
-	 * and -> Expression to add multiple features(eg. role based auth, custom login page, custom ogout page)
+	 * and -> Expression to add multiple features(eg. role based auth, custom login page, custom ogout page, exception handling)
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -51,14 +53,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/").hasRole("EMPLOYEE")
 		.antMatchers("/managers/**").hasRole("MANAGER")
 		.antMatchers("/admins/**").hasRole("ADMIN")
-		.and()
+		.and()											// Below code shows a custom login form
 		.formLogin()
-		.loginPage("/showMyLoginPage")	//pth to login page to be shown
-		.loginProcessingUrl("/authenticateTheUser")	//path to submit actionn 
-		.permitAll() //allow everone to the the page
-		.and()
-		.logout()	// Add logout functionality
-		.permitAll();	
+		.loginPage("/showMyLoginPage")					//pth to login page to be shown
+		.loginProcessingUrl("/authenticateTheUser")		//path to submit actionn 
+		.permitAll() 									//allow everone to the the page
+		.and() 											// Add logout functionality
+		.logout()	
+		.permitAll()
+		.and()											// Below code shows an access denied page on Exception
+		.exceptionHandling()
+		.accessDeniedPage("/accessDenied");	
 	}
 
 }

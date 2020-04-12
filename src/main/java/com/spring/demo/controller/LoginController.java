@@ -34,5 +34,10 @@ public class LoginController {
 	public String showLeaderPage() {
 		return "managers";
 	}
+	
+	@GetMapping("/accessDenied")
+	public String showAccessDenied() {
+		return "accessdenied";
+	}
 
 }
