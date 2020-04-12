@@ -15,11 +15,18 @@
 		Username: <security:authentication property="principal.username"/>
 		Roles: <security:authentication property="principal.authorities"/>
 		
+		<!-- Security Access content are not not, they are simply not included during rendering -->
 		
 		<!-- Accessible to Admin -->
+		<!-- Only be visible to admin Role -->
+		<security:authorize access="hasRole('ADMIN')">
 		<br><br><a href="${pageContext.request.contextPath}/admins">Admin Accessible Page</a>
+		</security:authorize>
 		<!-- Accessible to Managers -->
+		<!-- Link will only be visible to manager -->
+		<security:authorize access="hasRole('MANAGER')">
 		<br><br><a href="${pageContext.request.contextPath}/managers">Manager Accessible Page</a>
+		</security:authorize>
 		
 		<!-- We do not need to cfreate any mapping as it will be hadled by Sprin -->
 		<form:form action="${pageContext.request.contextPath}/logout" method="POST">
