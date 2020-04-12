@@ -68,14 +68,25 @@ public class AppConfig {
 			dataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 			dataSource.setUser(env.getProperty("jdbc.user"));
 			dataSource.setPassword(env.getProperty("jdbc.password"));
-			dataSource.setInitialPoolSize(Integer.parseInt(env.getProperty("connection.pool.initialPoolSize")));
-			dataSource.setMinPoolSize(Integer.parseInt(env.getProperty("minPoolSize")));
-			dataSource.setMaxPoolSize(Integer.parseInt(env.getProperty("maxPoolSize")));
-			dataSource.setMaxIdleTime(Integer.parseInt(env.getProperty("maxIdleTime")));
+			dataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+			dataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+			dataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
+			dataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 		} catch (PropertyVetoException e) {
 			throw new RuntimeException(e);
 		}
 		return dataSource;
+	}
+
+	/**
+	 * Could have read directly 
+	 * Its always better to create  a helper method
+	 * @return int
+	 */
+	private int getIntProperty(String string) {
+		String propertyValue = env.getProperty(string);
+		int intValue = Integer.parseInt(propertyValue);
+		return intValue;
 	}
 
 }
